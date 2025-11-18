@@ -1,0 +1,972 @@
+<style>     
+  .xai-tab .tab-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+    object-fit: contain;
+  }
+
+  .xai-tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin: 20px auto 0;
+    justify-content: center;
+    width: {{ section.settings.container_width }}px;
+    overflow: hidden;
+  }
+
+  .xai-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 21px;
+    transition: color 0.3s;
+    width: 33.33%;
+    text-align: center;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .xai-tab.xai-active {
+    color: {{ section.settings.active_tab_color }};
+    border-bottom: 7px solid;
+    margin-bottom: -4px;
+    border-image: linear-gradient(130deg, {{ section.settings.gradient_start_color }}, {{ section.settings.active_tab_color }}) 1;
+  }
+
+  .xai-tab:hover {
+    color: #000;
+  }
+
+  /* Content Area Styles */
+  .xai-tab-content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    position: relative;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+    max-width: {{ section.settings.container_width }}px;
+    background-color: {{ section.settings.content_bg_color }};
+    transition: all 0.5s ease-in-out;
+  }
+
+  .xai-tab-content.xai-active {
+    display: block;
+    height: auto;
+    opacity: 1;
+    overflow: visible;
+  }
+
+  /* Video Grid Container (Desktop) */
+  .video-grid-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .main-video-section {
+    flex: 3.4;
+    min-width: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: {{ section.settings.video_bg_color }};
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding-bottom: 20px;
+  }
+
+  .main-video-section .video-embed-wrapper {
+    margin-bottom: 15px;
+  }
+
+  .side-videos-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 250px;
+    box-sizing: border-box;
+  }
+
+  /* Video Embed Wrapper */
+  .video-embed-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .video-embed-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Video Titles and Descriptions */
+  .video-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 20px 10px;
+    color: #333;
+    text-align: left;
+    text-wrap: auto;
+    line-height:1.2;
+  }
+
+  .main-video-description {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 20px 20px;
+    text-align: left;
+    flex-grow: 1;
+  }
+
+  /* Side Video Item */
+  .video-item {
+    display: flex;
+    align-items: stretch;
+    gap: 15px;
+    background-color: {{ section.settings.video_bg_color }};
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-grow: 1;
+  }
+
+  .video-item .video-embed-wrapper {
+    flex: 0 0 60%;
+    padding-bottom: 33.75%;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .video-item-text-content {
+    flex: 1;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+  }
+
+  .video-item .video-item-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #333;
+  }
+
+  .video-item .video-item-description {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  /* Button Styles */
+  .explore-button-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .explore-more-button {
+    background: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }} !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .explore-more-button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 40px;
+    color: #000;
+    margin: 60px auto 30px;
+    max-width: {{ section.settings.container_width }}px;
+  }
+
+  /* Mobile Swipe Container */
+  .swipe-container {
+    display: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .swipe-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swipe-container .video-slide {
+    display: inline-block;
+    width: 100%;
+    scroll-snap-align: start;
+    padding: 0 10px;
+    box-sizing: border-box;
+    vertical-align: top;
+    background-color: {{ section.settings.video_bg_color }};
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .swipe-container .video-slide .video-embed-wrapper {
+    padding-bottom: 56.25%;
+  }
+
+  .swipe-container .video-slide .video-title,
+  .swipe-container .video-slide .main-video-description,
+  .swipe-container .video-slide .video-item-title,
+  .swipe-container .video-slide .video-item-description {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    display: none;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .progress-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+  }
+
+  .progress-dot.active {
+    background-color: {{ section.settings.active_tab_color }};
+  }
+
+  /* Video Cover Styles */
+  .video-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #000; /* Fallback background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .video-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: opacity 0.3s ease;
+  }
+
+  .video-cover:hover .video-cover-image {
+    opacity: 0.8; /* Dim image on hover */
+  }
+
+  .video-cover .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; /* Adjust size as needed */
+    height: 60px; /* Adjust size as needed */
+    background-color: rgb(0 0 0 / 60%); /* White with some transparency */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .video-cover .play-button::before {
+    content: '';
+    border-style: solid;
+    border-width: 15px 0 15px 25px; /* Creates a triangle */
+    border-color: transparent transparent transparent #FFF; /* Black play arrow */
+    margin-left: 5px; /* Adjust to center the triangle */
+  }
+
+  .video-cover .play-button:hover {
+    transform: translate(-50%, -50%) scale(1.1); /* Slightly enlarge on hover */
+    background-color: rgb(0 0 0 / 80%);;
+  }
+
+  /* Ensure iframe starts hidden when cover is present */
+  .video-embed-wrapper iframe.lazy-video {
+    display: none;
+  }
+
+  /* If you need to make sure the video is visible after JS plays it */
+  .video-embed-wrapper iframe:not(.lazy-video-hidden) {
+      display: block;
+  }
+
+  /* Media Queries for Mobile */
+  @media (max-width: 768px) {
+    p.video-item-description {
+    margin: 0 !important;
+}
+        #shopify-section-{{section.id}} h2 {
+        padding: 0 20px;
+        line-height: 1.25;
+    }
+    .swipe-container {
+    margin-bottom: 10px;
+}
+    .progress-bar {
+    margin: 0;
+}
+    h3.video-title {
+    text-align: left!important;
+    margin: 15px!important;
+}
+    h3.video-item-title {
+    text-align: left!important;
+    margin: 15px!important;
+}
+    p.main-video-description {
+    text-wrap: auto;
+          font-weight: 400!important;
+    color: #232323;  
+    margin: 0 !important;
+}
+    h3.video-item-title {
+    line-height: 1.25;
+      font-size:16px;
+}
+    .swipe-container .video-slide {
+      width: 100%;
+      padding: 0 10px;
+      height: auto;
+    }
+    .explore-button-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .video-title {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    .video-item-text-content {
+      padding: 0;
+      text-wrap: auto;
+      font-size: 18px;
+    }
+    .xai-tabs {
+      width: 150%;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+      transition: transform 0.3s ease;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .xai-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .xai-tab {
+      font-size: 0.8rem;
+      padding: 8px 10px;
+      width: 30%;
+      scroll-snap-align: start;
+    }
+
+    .xai-tab.xai-active {
+      transform: scale(1.05);
+      color: {{ section.settings.active_tab_color }};
+    }
+
+    .xai-tab-content {
+      padding: 0px;
+      max-width: 100%;
+    }
+
+    .video-grid-container {
+      display: none;
+    }
+
+    .swipe-container {
+      display: block;
+    }
+
+    .progress-bar {
+      display: block;
+    }
+
+    .explore-more-button {
+      padding: 5px 20px;
+      font-size: 18px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+
+<h2 class="section-title">{{ section.settings.section_title | escape }}</h2>
+<div class="xai-tabs">
+  {% for block in section.blocks %}
+    {% if block.type == 'tab' %}
+      <div class="xai-tab {% if forloop.first %}xai-active{% endif %}" data-tab="xai-tab-{{ block.settings.tab_id | escape }}">
+        {% if block.settings.tab_icon %}
+          <img src="{{ block.settings.tab_icon | img_url: '24x24' }}" alt="{{ block.settings.tab_title | escape }}" class="tab-icon">
+        {% endif %}
+        {{ block.settings.tab_title | escape }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% assign tabs_with_videos = section.blocks | where: 'type', 'tab' %}
+{% assign videos = section.blocks | where: 'type', 'video' %}
+
+{% for tab in tabs_with_videos %}
+  <div class="xai-tab-content {% if forloop.first %}xai-active{% endif %}" id="xai-tab-{{ tab.settings.tab_id | escape }}">
+    <div class="swipe-container">
+      {% assign video_count = 0 %}
+      {% for video in videos %}
+        {% if video.settings.tab_id == tab.settings.tab_id %}
+          {% assign video_count = video_count | plus: 1 %}
+          <div class="video-slide">
+            <div class="video-embed-wrapper">
+              {% if video.settings.video_cover_image != blank %}
+                <div class="video-cover" data-video-url="{{ video.settings.video_url | escape }}">
+                  <img src="{{ video.settings.video_cover_image | img_url: 'master' }}" alt="{{ video.settings.video_title | escape }}" class="video-cover-image">
+                  <div class="play-button"></div>
+                </div>
+                <iframe loading="lazy" class="lazy-video" data-src="{{ video.settings.video_url | escape }}" title="{{ video.settings.video_title | escape }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display:none;"></iframe>
+              {% else %}
+                {% unless video.settings.video_url == blank %}
+                  <iframe  loading="lazy" src="{{ video.settings.video_url | escape }}" title="{{ video.settings.video_title | escape }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                {% endunless %}
+              {% endif %}
+            </div>
+            {% if video.settings.video_title !=blank %}
+              <h3 class="video-title">{{ video.settings.video_title | escape }}</h3>
+            {% endif %}
+            {% if video.settings.video_description %}
+              <p class="main-video-description">{{ video.settings.video_description | escape }}</p>
+            {% endif %}
+            {% if video.settings.video_subtitle != blank %}
+              <div class="video-item-text-content">
+                <h3 class="video-item-title">{{ video.settings.video_subtitle | escape }}</h3>
+                <p class="video-item-description">{{ video.settings.video_subdescription | escape }}</p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="progress-bar">
+      {% for i in (1..video_count) %}
+        <span class="progress-dot {% if forloop.first %}active{% endif %}"></span>
+      {% endfor %}
+    </div>
+    <div class="video-grid-container">
+      <div class="main-video-section">
+        {% for video in videos %}
+          {% if video.settings.tab_id == tab.settings.tab_id and video.settings.is_main_video %}
+            <div class="video-embed-wrapper">
+              {% unless video.settings.video_url == blank %}
+                {% if video.settings.video_cover_image != blank %}
+                  <div class="video-cover" data-video-url="{{ video.settings.video_url | escape }}">
+                    <img src="{{ video.settings.video_cover_image | img_url: 'master' }}" alt="{{ video.settings.video_title | escape }}" class="video-cover-image">
+                    <div class="play-button"></div>
+                  </div>
+                  <iframe  loading="lazy" class="lazy-video" data-src="{{ video.settings.video_url | escape }}" title="{{ video.settings.video_title | escape }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display:none;"></iframe>
+                {% else %}
+                  <iframe  loading="lazy" src="{{ video.settings.video_url | escape }}" title="{{ video.settings.video_title | escape }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                {% endif %}
+              {% endunless %}
+            </div>
+            {% if video.settings.video_title != blank%}
+              <h3 class="video-title">{{ video.settings.video_title | escape }}</h3>
+            {% endif %}
+            {% if video.settings.video_description %}
+              <p class="main-video-description">{{ video.settings.video_description | escape }}</p>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="side-videos-section">
+        {% for video in videos %}
+          {% if video.settings.tab_id == tab.settings.tab_id and video.settings.is_main_video == false %}
+            <div class="video-item">
+              <div class="video-embed-wrapper">
+                {% unless video.settings.video_url == blank %}
+                  {% if video.settings.video_cover_image != blank %}
+                    <div class="video-cover" data-video-url="{{ video.settings.video_url | escape }}">
+                      <img src="{{ video.settings.video_cover_image | img_url: 'master' }}" alt="{{ video.settings.video_subtitle | escape }}" class="video-cover-image">
+                      <div class="play-button"></div>
+                    </div>
+                    <iframe  loading="lazy" class="lazy-video" data-src="{{ video.settings.video_url | escape }}" title="{{ video.settings.video_subtitle | escape }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display:none;"></iframe>
+                  {% else %}
+                    <iframe  loading="lazy" src="{{ video.settings.video_url | escape }}" title="{{ video.settings.video_subtitle | escape }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  {% endif %}
+                {% endunless %}
+              </div>
+              <div class="video-item-text-content">
+                {% if video.settings.video_subtitle != blank%}
+                  <h3 class="video-item-title">{{ video.settings.video_subtitle | escape }}</h3>
+                {% endif %}
+                {% if video.settings.video_subdescription %}
+                  <p class="video-item-description">{{ video.settings.video_subdescription | escape }}</p>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="explore-button-container">
+      {% unless tab.settings.button_link == blank %}
+        <a href="{{ tab.settings.button_link | escape }}" class="explore-more-button">{{ tab.settings.button_text | escape }}</a>
+      {% endunless %}
+    </div>
+  </div>
+{% endfor %}
+
+<script>
+  // 标签切换和滑动导航
+const xaiTabs = document.querySelectorAll('.xai-tab');
+const xaiTabContents = document.querySelectorAll('.xai-tab-content');
+const xaiTabsContainer = document.querySelector('.xai-tabs');
+
+xaiTabs.forEach((xaiTab, index) => {
+  xaiTab.addEventListener('click', () => {
+    xaiTabs.forEach(t => t.classList.remove('xai-active'));
+    xaiTabContents.forEach(content => content.classList.remove('xai-active'));
+
+    xaiTab.classList.add('xai-active');
+    const tabId = xaiTab.getAttribute('data-tab');
+    if (tabId) {
+      const tabContent = document.getElementById(tabId);
+      if (tabContent) {
+        tabContent.classList.add('xai-active');
+      } 
+    } 
+
+    if (window.innerWidth <= 768) {
+      const tabWidth = xaiTab.offsetWidth;
+      const translateX = -index * tabWidth * 0.4;
+      xaiTabsContainer.style.transform = `translateX(${translateX}px)`;
+    }
+  });
+});
+
+// 滑动容器和进度条逻辑
+const swipeContainers = document.querySelectorAll('.swipe-container');
+swipeContainers.forEach(container => {
+  if (container.nextElementSibling) {
+    const progressDots = container.nextElementSibling.querySelectorAll('.progress-dot');
+    container.addEventListener('scroll', () => {
+      const slideWidth = container.clientWidth;
+      const scrollPosition = container.scrollLeft;
+      const currentSlide = Math.round(scrollPosition / slideWidth);
+      progressDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    });
+  } 
+});
+
+// 窗口大小调整时重置标签位置
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    xaiTabsContainer.style.transform = 'translateX(0)';
+  } else {
+    const activeTab = document.querySelector('.xai-tab.xai-active');
+    if (activeTab) {
+      const index = Array.from(xaiTabs).indexOf(activeTab);
+      const tabWidth = activeTab.offsetWidth;
+      const translateX = -index * tabWidth * 0.8;
+      xaiTabsContainer.style.transform = `translateX(${translateX}px)`;
+    } 
+  }
+});
+
+// 为播放按钮绑定视频播放逻辑
+const playButtons = document.querySelectorAll('.play-button');
+
+playButtons.forEach(button => {
+  // 获取父级的 video-cover 和对应的 iframe
+  const videoCover = button.closest('.video-cover');
+  const iframe = videoCover?.nextElementSibling;
+
+  if (videoCover && iframe) {
+    button.addEventListener('click', () => {
+      let videoUrl = videoCover.dataset.videoUrl;
+      
+      // 确保 videoUrl 包含 autoplay=1 参数
+      if (videoUrl && !videoUrl.includes('autoplay=1')) {
+        const separator = videoUrl.includes('?') ? '&' : '?';
+        videoUrl = `${videoUrl}${separator}autoplay=1&mute=0`;
+      }
+
+      if (videoUrl) {
+        // 设置 iframe 的 src 并显示
+        iframe.src = videoUrl;
+        iframe.classList.remove('lazy-video'); // 移除隐藏类
+        iframe.style.display = 'block';
+        videoCover.style.display = 'none'; // 隐藏封面
+
+        // 确保 iframe 允许自动播放
+        iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+
+        
+      } 
+    });
+  } 
+});
+</script>
+
+{% schema %}
+{
+  "name": "Video Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "From Installation to Real Stories"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_color",
+      "label": "Active Tab Color",
+      "default": "#004da6"
+    },
+    {
+      "type": "color",
+      "id": "gradient_start_color",
+      "label": "Gradient Start Color",
+      "default": "#0087b8"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "video_bg_color",
+      "label": "Video Background Color",
+      "default": "#f2f2f2"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#004da6"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_id",
+          "label": "Tab ID",
+          "info": "Enter a unique ID for this tab (e.g., tab1, tab2). Use the same ID in video blocks to associate them with this tab."
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Tab Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "tab_icon",
+          "label": "Tab Icon"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Explore More Video"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_id",
+          "label": "Tab ID",
+          "info": "Enter the Tab ID to associate this video with a specific tab (e.g., tab1, tab2)."
+        },
+        {
+          "type": "checkbox",
+          "id": "is_main_video",
+          "label": "Is Main Video",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "video_cover_image",
+          "label": "Cover Image",
+          "info": "Upload an image to use as the video cover. If empty, the video will load directly."
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "default": "https://www.youtube.com/embed/..."
+        },
+        {
+          "type": "text",
+          "id": "video_title",
+          "label": "Video Title",
+          "default": "Video Title"
+        },
+        {
+          "type": "textarea",
+          "id": "video_description",
+          "label": "Video Description",
+          "default": "Video description goes here."
+        },
+        {
+          "type": "text",
+          "id": "video_subtitle",
+          "label": "Video Subtitle (for side videos)",
+          "default": "Video Subtitle"
+        },
+        {
+          "type": "textarea",
+          "id": "video_subdescription",
+          "label": "Video Subdescription (for side videos)",
+          "default": "Video subdescription goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Tabs",
+      "category": "Video",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "tab1",
+            "tab_title": "Installation Guide",
+            "button_text": "Explore More Video",
+            "button_link": "/collections/cable-railing"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab1",
+            "is_main_video": true,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_title": "Muzata Cable Railing System Installation Guide",
+            "video_description": "Step-by-step installation guide to easily master every detail"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab1",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Surface Mount",
+            "video_subdescription": "Surface mounting challenges? Watch this guide for quick, accurate installation."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab1",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Side Mount",
+            "video_subdescription": "Need a solid side mount? Get a sturdy, reliable installation guide."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab1",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "How to Cut Handrail",
+            "video_subdescription": "Trouble cutting handrails? Learn precise cutting for a perfect fit."
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "tab2",
+            "tab_title": "Collaboration",
+            "button_text": "Explore More Video",
+            "button_link": "/collections/all"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab2",
+            "is_main_video": true,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_title": "Collaboration Overview",
+            "video_description": "Explore our partnership opportunities and how we work together for success."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab2",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Partner Success Story",
+            "video_subdescription": "See how our partners have succeeded with our collaboration programs."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab2",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Collaboration Tips",
+            "video_subdescription": "Learn key tips for effective collaboration with our team."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab2",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Teamwork Strategies",
+            "video_subdescription": "Discover strategies to enhance teamwork and collaboration."
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_id": "tab3",
+            "tab_title": "Owner's Story",
+            "button_text": "Explore More Video",
+            "button_link": "/collections/cable-railing-system"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab3",
+            "is_main_video": true,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_title": "Our Brand Story",
+            "video_description": "Discover the journey behind our brand and the passion that drives us."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab3",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Founder Interview",
+            "video_subdescription": "Hear from our founder about the vision behind the brand."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab3",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Customer Testimonial",
+            "video_subdescription": "Listen to a customer’s story about their experience with our products."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "tab_id": "tab3",
+            "is_main_video": false,
+            "video_url": "https://www.youtube.com/embed/...",
+            "video_subtitle": "Behind the Scenes",
+            "video_subdescription": "Get a glimpse of the behind-the-scenes efforts that shape our brand."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
