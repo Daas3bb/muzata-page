@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
 <style>
   .abundant-options-container {
-    max-width: 1440px;
-    margin: 160px auto;
+    box-sizing: border-box;
+    max-width: 1920px;
+    background-color: #F7F7F7;
+    padding:0;
 
   }
 
@@ -22,8 +16,11 @@
     line-height: 52px;
     text-align: center;
     margin: 0;
+    padding-top:160px;
   }
 
+
+  
   .abundant-options-container p {
     color: #333;
     font-family: Poppins, sans-serif;
@@ -48,6 +45,7 @@
     justify-content: space-between;
     list-style-type: none;
     gap: 24px;
+    padding-bottom: 160px;
   }
 
   .combinations-list-pc li {
@@ -56,23 +54,19 @@
   }
 
   .combinations-list-pc li:nth-child(1) {
-    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-professional-custom-cable-comparison-pc.png?v=1763016456") center/cover no-repeat;
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-professional-custom-cable-comparison-pc.png?v=1763016456") center/contain no-repeat;
 
   }
 
   .combinations-list-pc li:nth-child(2) {
-    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-professional-custom-cable-comparison-pc.png?v=1763016441") center/cover no-repeat;
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-professional-custom-cable-comparison-pc.png?v=1763016441") center/contain no-repeat;
   }
 
   .combinations-list-pc li:nth-child(3) {
-    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-professional-custom-cable-comparison-pc.png?v=1763016497") center/cover no-repeat;
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-professional-custom-cable-comparison-pc.png?v=1763016497") center/contain no-repeat;
   }
 
   @media (max-width: 780px) {
-    body {
-      padding: 0;
-      margin: 0;
-    }
 
     .abundant-options-container {
       background-color: #F7F7F7;
@@ -91,10 +85,12 @@
     .abundant-options-container p {
       font-size: 18px;
       line-height: 32px;
-      padding: 12px 0;
+      padding: 12px 10px;
       margin: 0;
       white-space: normal;
     }
+
+
 
     .combinations-list-pc {
       display: none;
@@ -150,7 +146,12 @@
       height: 22px;
       border-radius: 50%;
       border: 1px solid #004DA6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
     }
+
 
     .combinations-list .content {
       box-sizing: border-box;
@@ -200,106 +201,112 @@
   }
 </style>
 
-<body>
-  <div class="abundant-options-container">
-    <h2>Abundant Options<br>Versatile Pairings</h2>
-    <p>Endless combinations with Muzata cable railing</p>
-    <ul class="combinations-list-pc">
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <ul class="combinations-list">
-      <li class="list-finishing">
-        <div class="title" onclick="toggleContent(this)">
-          <p>Finishing</p>
-          <div class="icon">
 
-          </div>
+<div class="abundant-options-container">
+  <h2>Abundant Options<br>Versatile Pairings</h2>
+  <p>Endless combinations with Muzata cable railing</p>
+  <ul class="combinations-list-pc">
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <ul class="combinations-list">
+    <li class="list-finishing">
+      <div class="title" onclick="toggleContent(this)">
+        <p>Finishing</p>
+        <div class="icon">
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289"
+            alt="Top Arrow Icon" width="16" height="16">
         </div>
-        <div class="content">
-          <div class="left">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-black-professional-custom-cable-comparison.png?v=1763081713"
-              width="360px" height="360px" alt="finishing option 1">
-            <h3>Black-powder coated</h3>
-            <p>Contemporary look</p>
-          </div>
-          <div class="right">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-white-professional-custom-cable-comparison.png?v=1763081700"
-              width="360px" height="360px" alt="finishing option 2">
-            <h3>Brushed<br>finish</h3>
-            <p>Elegant appearance</p>
-          </div>
+      </div>
+      <div class="content">
+        <div class="left">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-black-professional-custom-cable-comparison.png?v=1763081713"
+            width="360px" height="360px" alt="finishing option 1">
+          <h3>Black-powder coated</h3>
+          <p>Contemporary look</p>
         </div>
-      </li>
-      <li class="list-height">
-        <div class="title" onclick="toggleContent(this)">
-          <p>Height</p>
-          <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
-              fill="none">
-              <path d="M2 10.5L10 2.5" stroke="white" stroke-width="1.8" stroke-linecap="round" />
-              <path d="M2 2.5H10V10.5" stroke="white" stroke-width="1.8" stroke-linecap="round" />
-            </svg></div>
+        <div class="right">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-white-professional-custom-cable-comparison.png?v=1763081700"
+            width="360px" height="360px" alt="finishing option 2">
+          <h3>Brushed<br>finish</h3>
+          <p>Elegant appearance</p>
         </div>
-        <div class="content">
-          <div class="left">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-36-professional-custom-cable-comparison.png?v=1763081756"
-              width="360px" height="360px" alt="height 36 option">
-            <h3>36” for<br>residential project</h3>
-            <p></p>
-          </div>
-          <div class="right">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-42-professional-custom-cable-comparison.png?v=1763081739"
-              width="360px" height="360px" alt="height 42 option">
-            <h3>42” for<br>commercial project</h3>
-            <p></p>
-          </div>
+      </div>
+    </li>
+    <li class="list-height">
+      <div class="title" onclick="toggleContent(this)">
+        <p>Height</p>
+        <div class="icon">
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289"
+            alt="Top Arrow Icon" width="16" height="16">
         </div>
-      </li>
+      </div>
+      <div class="content">
+        <div class="left">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-36-professional-custom-cable-comparison.png?v=1763081756"
+            width="360px" height="360px" alt="height 36 option">
+          <h3>36” for<br>residential project</h3>
+          <p></p>
+        </div>
+        <div class="right">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-42-professional-custom-cable-comparison.png?v=1763081739"
+            width="360px" height="360px" alt="height 42 option">
+          <h3>42” for<br>commercial project</h3>
+          <p></p>
+        </div>
+      </div>
+    </li>
 
-      <li class="list-mounting-style">
+    <li class="list-mounting-style">
 
-        <div class="title" onclick="toggleContent(this)">
-          <p>Mounting Style</p>
-          <div class="icon"></div>
+      <div class="title" onclick="toggleContent(this)">
+        <p>Mounting Style</p>
+        <div class="icon">
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289"
+            alt="Top Arrow Icon" width="16" height="16">
         </div>
-        <div class="content">
-          <div class="left">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-1-professional-custom-cable-comparison.png?v=1763081801"
-              width="360px" height="360px" alt="mounting-style option 1">
-            <h3>Surface mount</h3>
-            <p>Long-lasting support and stability</p>
-          </div>
-          <div class="right">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-2-professional-custom-cable-comparison.png?v=1763081787"
-              width="360px" height="360px" alt="mounting-style option 2">
-            <h3>Side mount</h3>
-            <p>Maximizing Your Space</p>
-          </div>
+      </div>
+      <div class="content">
+        <div class="left">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-1-professional-custom-cable-comparison.png?v=1763081801"
+            width="360px" height="360px" alt="mounting-style option 1">
+          <h3>Surface mount</h3>
+          <p>Long-lasting support and stability</p>
         </div>
-      </li>
+        <div class="right">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-2-professional-custom-cable-comparison.png?v=1763081787"
+            width="360px" height="360px" alt="mounting-style option 2">
+          <h3>Side mount</h3>
+          <p>Maximizing Your Space</p>
+        </div>
+      </div>
+    </li>
 
-    </ul>
-  </div>
-  <script>
-    function toggleContent(element) {
-      const content = element.nextElementSibling;
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-        content.style.padding = "0 32px";
+  </ul>
+</div>
+<script>
+  function toggleContent(element) {
+    const content = element.nextElementSibling;
+    const img = element.querySelector('.icon img');
 
-      } else {
-        content.style.maxHeight = "300px";
-        content.style.padding = "32px 32px 24px";
-      }
+    if (content.style.maxHeight) {
+      // 展开
+      content.style.maxHeight = null;
+      content.style.padding = "0 32px";
+      img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289";
+
+    } else {
+      // 折叠
+      content.style.maxHeight = "300px";
+      content.style.padding = "32px 32px 24px";
+      img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613";
     }
-  </script>
-</body>
-
-</html>
+  }
+</script>
