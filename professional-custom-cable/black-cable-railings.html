@@ -1,0 +1,201 @@
+<style>
+  .selling-point-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .selling-point-title {
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-size: 44px;
+    line-height: 52px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin: 160px auto 40px auto;
+  }
+
+  .selling-point-list {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 1440px;
+    color: #1A1A1A;
+  }
+
+  .selling-point-list li {
+    width: 100%;
+    min-height: 210px;
+    margin-bottom: 160px;
+    padding: 108px 34px 24px 20px;
+  }
+
+  .selling-point-list li h3 {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    margin-bottom: 16px;
+  }
+
+  .selling-point-list li p {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  .selling-point-list li:nth-child(1) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-professional-custom-cable-selling-point-pc.png?v=1763016260")center/contain no-repeat;
+  }
+
+  .selling-point-list li:nth-child(2) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-professional-custom-cable-selling-point-pc.png?v=1763016322") center/contain no-repeat;
+  }
+
+  .selling-point-list li:nth-child(3) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-professional-custom-cable-selling-point-pc.png?v=1763016336") center/contain no-repeat;
+  }
+
+  .selling-point-list li:nth-child(4) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/4-professional-custom-cable-selling-point-pc.png?v=1763016279") center/contain no-repeat;
+  }
+
+  @media (max-width: 780px) {
+    .selling-point-container {
+      width: 100%;
+    }
+
+    .selling-point-title {
+      font-size: 26px;
+      line-height: 32px;
+      font-weight: 700;
+      margin: 48px 0 36px;
+    }
+
+
+    .selling-point-list {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 48px;
+    }
+
+    .selling-point-text {
+      width: 100%;
+      padding: 0;
+    }
+
+    .selling-point-list li {
+      width: auto;
+      min-height: 84px;
+
+      margin-bottom: 12px;
+      cursor: pointer;
+
+    }
+
+    .selling-point-list li h3 {
+      display: none;
+    }
+
+    .selling-point-list li p {
+      display: none;
+    }
+
+    .selling-point-list li:nth-child(1) {
+      background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-professional-custom-cable-selling-point.png?v=1763081422")center/contain no-repeat;
+      margin-right: 6px;
+    }
+
+    .selling-point-list li:nth-child(2) {
+      background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-professional-custom-cable-selling-point.png?v=1763081443") center/contain no-repeat;
+      margin-left: 6px;
+    }
+
+    .selling-point-list li:nth-child(3) {
+      background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-professional-custom-cable-selling-point.png?v=1763081478") center/contain no-repeat;
+      margin-right: 6px;
+    }
+
+    .selling-point-list li:nth-child(4) {
+      background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/4-professional-custom-cable-selling-point.png?v=1763081494") center/contain no-repeat;
+      margin-left: 6px;
+    }
+
+    .selling-point-list li.active:nth-child(1) {
+      background-image: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-1-professional-custom-cable-selling-point.png?v=1763081547");
+    }
+
+    .selling-point-list li.active:nth-child(2) {
+      background-image: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-1-professional-custom-cable-selling-point.png?v=1763081538");
+    }
+
+    .selling-point-list li.active:nth-child(3) {
+      background-image: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-1-professional-custom-cable-selling-point.png?v=1763081556");
+    }
+
+    .selling-point-list li.active:nth-child(4) {
+      background-image: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/4-1-professional-custom-cable-selling-point.png?v=1763081527");
+    }
+
+  }
+</style>
+
+
+<div class="selling-point-container">
+  <h2 class="selling-point-title">Why Choose Muzata Custom Railing Service?</h2>
+
+  <ul class="selling-point-list">
+    <li>
+      <div class="selling-point-text">
+        <h3>Expert Design<br>Consultation</h3>
+        <p>1-on-1 design support to bring your vision to life—perfectly tailored to your space and style.</p>
+      </div>
+
+    </li>
+    <li>
+      <div class="selling-point-text">
+        <h3>Tailored<br>for Any Project</h3>
+        <p>Custom railings for any space—staircases to decks—crafted to enhance your architecture.</p>
+      </div>
+
+    </li>
+    <li>
+      <div class="selling-point-text">
+        <h3>Save Your<br>Cost & Time</h3>
+        <p>Avoid off-the-shelf solutions. We deliver exactly what you need, faster and smarter.</p>
+      </div>
+
+    </li>
+    <li>
+      <div class="selling-point-text">
+        <h3>Dedicated<br>Project Support</h3>
+        <p>Your dedicated expert provides remote guidance, documentation, and support from planning to completion.</p>
+      </div>
+
+    </li>
+
+
+  </ul>
+</div>
+
+
+<script>
+  if (window.innerWidth <= 780) {
+    const items = document.querySelectorAll(".selling-point-list li");
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        items.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+      })
+    })
+
+
+  }
+</script>

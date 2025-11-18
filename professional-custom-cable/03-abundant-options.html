@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .abundant-options-container {
+    max-width: 1440px;
+    margin: 160px auto;
+
+  }
+
+  .abundant-options-container h2 {
+    color: #1A1A1A;
+    font-family: Poppins, sans-serif;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .abundant-options-container p {
+    color: #333;
+    font-family: Poppins, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 38px;
+    text-align: center;
+    padding: 24px 0;
+    margin: 0;
+  }
+
+  .combinations-list {
+    display: none;
+  }
+
+  .combinations-list-pc {
+    width: 100%;
+    padding: 0;
+    margin: 36px auto;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    gap: 24px;
+  }
+
+  .combinations-list-pc li {
+    flex: 1;
+    min-height: 380px;
+  }
+
+  .combinations-list-pc li:nth-child(1) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-professional-custom-cable-comparison-pc.png?v=1763016456") center/cover no-repeat;
+
+  }
+
+  .combinations-list-pc li:nth-child(2) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-professional-custom-cable-comparison-pc.png?v=1763016441") center/cover no-repeat;
+  }
+
+  .combinations-list-pc li:nth-child(3) {
+    background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-professional-custom-cable-comparison-pc.png?v=1763016497") center/cover no-repeat;
+  }
+
+  @media (max-width: 780px) {
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .abundant-options-container {
+      background-color: #F7F7F7;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 48px 24px;
+      margin: 0;
+    }
+
+    .abundant-options-container h2 {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 32px;
+    }
+
+    .abundant-options-container p {
+      font-size: 18px;
+      line-height: 32px;
+      padding: 12px 0;
+      margin: 0;
+      white-space: normal;
+    }
+
+    .combinations-list-pc {
+      display: none;
+    }
+
+    .combinations-list {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .list-finishing,
+    .list-height,
+    .list-mounting-style {
+      height: 100%;
+
+    }
+
+    .combinations-list li {
+      box-sizing: border-box;
+      width: 100%;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .combinations-list .title {
+      box-sizing: border-box;
+      background-color: #E5EFF8;
+      border-radius: 8px;
+      height: 56px;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .combinations-list .title p {
+      padding: 0;
+      color: #004DA6;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+
+    .combinations-list .title .icon {
+      background-color: rgba(255, 255, 255, 0);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid #004DA6;
+    }
+
+    .combinations-list .content {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      max-height: 0;
+      padding: 0 32px;
+      transition: max-height 0.3s ease-out,
+        padding 0.3s ease-out;
+
+    }
+
+    .combinations-list .content .left,
+    .combinations-list .content .right {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .combinations-list .content img {
+      width: 100%;
+      height: auto;
+    }
+
+    .combinations-list .content h3 {
+      color: #1A1A1A;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+      margin: 16px 0 0;
+    }
+
+    .combinations-list .content p {
+      padding: 0;
+      color: #333;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 14px;
+
+    }
+  }
+</style>
+
+<body>
+  <div class="abundant-options-container">
+    <h2>Abundant Options<br>Versatile Pairings</h2>
+    <p>Endless combinations with Muzata cable railing</p>
+    <ul class="combinations-list-pc">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="combinations-list">
+      <li class="list-finishing">
+        <div class="title" onclick="toggleContent(this)">
+          <p>Finishing</p>
+          <div class="icon">
+
+          </div>
+        </div>
+        <div class="content">
+          <div class="left">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-black-professional-custom-cable-comparison.png?v=1763081713"
+              width="360px" height="360px" alt="finishing option 1">
+            <h3>Black-powder coated</h3>
+            <p>Contemporary look</p>
+          </div>
+          <div class="right">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-white-professional-custom-cable-comparison.png?v=1763081700"
+              width="360px" height="360px" alt="finishing option 2">
+            <h3>Brushed<br>finish</h3>
+            <p>Elegant appearance</p>
+          </div>
+        </div>
+      </li>
+      <li class="list-height">
+        <div class="title" onclick="toggleContent(this)">
+          <p>Height</p>
+          <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
+              fill="none">
+              <path d="M2 10.5L10 2.5" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M2 2.5H10V10.5" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+            </svg></div>
+        </div>
+        <div class="content">
+          <div class="left">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-36-professional-custom-cable-comparison.png?v=1763081756"
+              width="360px" height="360px" alt="height 36 option">
+            <h3>36” for<br>residential project</h3>
+            <p></p>
+          </div>
+          <div class="right">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/2-42-professional-custom-cable-comparison.png?v=1763081739"
+              width="360px" height="360px" alt="height 42 option">
+            <h3>42” for<br>commercial project</h3>
+            <p></p>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-mounting-style">
+
+        <div class="title" onclick="toggleContent(this)">
+          <p>Mounting Style</p>
+          <div class="icon"></div>
+        </div>
+        <div class="content">
+          <div class="left">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-1-professional-custom-cable-comparison.png?v=1763081801"
+              width="360px" height="360px" alt="mounting-style option 1">
+            <h3>Surface mount</h3>
+            <p>Long-lasting support and stability</p>
+          </div>
+          <div class="right">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-2-professional-custom-cable-comparison.png?v=1763081787"
+              width="360px" height="360px" alt="mounting-style option 2">
+            <h3>Side mount</h3>
+            <p>Maximizing Your Space</p>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <script>
+    function toggleContent(element) {
+      const content = element.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 32px";
+
+      } else {
+        content.style.maxHeight = "300px";
+        content.style.padding = "32px 32px 24px";
+      }
+    }
+  </script>
+</body>
+
+</html>
