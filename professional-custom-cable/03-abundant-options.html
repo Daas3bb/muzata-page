@@ -3,8 +3,8 @@
     box-sizing: border-box;
     max-width: 1920px;
     background-color: #F7F7F7;
-    padding:0;
-
+    padding: 0;
+    margin: 0 auto;
   }
 
   .abundant-options-container h2 {
@@ -16,11 +16,11 @@
     line-height: 52px;
     text-align: center;
     margin: 0;
-    padding-top:160px;
+    padding-top: 160px;
   }
 
 
-  
+
   .abundant-options-container p {
     color: #333;
     font-family: Poppins, sans-serif;
@@ -38,9 +38,9 @@
   }
 
   .combinations-list-pc {
-    width: 100%;
+    max-width: 1440px;
     padding: 0;
-    margin: 36px auto;
+    margin: 36px auto 0;
     display: flex;
     justify-content: space-between;
     list-style-type: none;
@@ -72,7 +72,7 @@
       background-color: #F7F7F7;
       box-sizing: border-box;
       width: 100%;
-      padding: 48px 24px;
+      padding: 48px 24px 48px;
       margin: 0;
     }
 
@@ -80,6 +80,7 @@
       font-size: 26px;
       font-weight: 600;
       line-height: 32px;
+      padding: 0;
     }
 
     .abundant-options-container p {
@@ -99,7 +100,7 @@
     .combinations-list {
       list-style: none;
       padding: 0;
-      margin: 24px 0;
+      margin-top: 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -297,13 +298,11 @@
     const img = element.querySelector('.icon img');
 
     if (content.style.maxHeight) {
-      // 展开
       content.style.maxHeight = null;
       content.style.padding = "0 32px";
       img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289";
 
     } else {
-      // 折叠
       content.style.maxHeight = "300px";
       content.style.padding = "32px 32px 24px";
       img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613";
