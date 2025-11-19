@@ -175,7 +175,7 @@
       <li class="tab-slope-mount" data-tab="slope">Slope mount</li>
     </ul>
     <div class="content">
-      <img id="tab-image"
+      <img
         src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763432273"
         width="2880" height="1280" alt="metal-black-content">
     </div>
@@ -189,65 +189,62 @@
 </div>
 
 <script>
-  const tabConfig = {
-    surface: {
-      label: "Surface mount",
-      imageUrl: {
-        desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763432273",
-        mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK.webp?v=1763432713"
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll('.metal-black-container');
+
+  sections.forEach(section => {
+    const tabButtons = section.querySelectorAll('.tabs li');
+    const tabImage = section.querySelector("img");
+    
+    const tabConfig = {
+      surface: {
+        imageUrl: {
+          desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763432273",
+          mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK.webp?v=1763432713"
+        }
+      },
+      side: {
+        imageUrl: {
+          desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-pc.webp?v=1763432291",
+          mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-1.webp?v=1763432725"
+        }
+      },
+      slope: {
+        imageUrl: {
+          desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-2-pc.webp?v=1763432309",
+          mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-WOOD-1.webp?v=1763432748"
+        }
       }
-    },
-    side: {
-      label: "Side mount",
-      imageUrl: {
-        desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-pc.webp?v=1763432291",
-        mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-1.webp?v=1763432725"
-      }
-    },
-    slope: {
-      label: "Slope mount",
-      imageUrl: {
-        desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-2-pc.webp?v=1763432309",
-        mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-WOOD-1.webp?v=1763432748"
-      }
+    };
+
+    function getDeviceType() {
+      return window.innerWidth <= 780 ? 'mobile' : 'desktop';
     }
-  };
 
-  const tabButtons = document.querySelectorAll('.tabs li');
-  const tabImage = document.getElementById('tab-image');
-
-  function getDeviceType() {
-    return window.innerWidth <= 780 ? 'mobile' : 'desktop';
-  }
-
-  function updateTabContent(tab) {
-    const config = tabConfig[tab];
-    if (config) {
+    function updateTabContent(tab) {
       const deviceType = getDeviceType();
-      tabImage.src = config.imageUrl[deviceType];
+      tabImage.src = tabConfig[tab].imageUrl[deviceType];
     }
-  }
-  document.addEventListener("DOMContentLoaded", function () {
-    const activeTab = document.querySelector('.tabs li.active');
-    if (activeTab) {
-      const tab = activeTab.getAttribute("data-tab");
-      updateTabContent(tab);
-    }
-  });
-  tabButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      const tab = this.getAttribute("data-tab");
-      updateTabContent(tab);
 
-      tabButtons.forEach(btn => btn.classList.remove("active"));
-      this.classList.add("active");
+    // 初始化加载 active tab
+    const activeTab = section.querySelector('.tabs li.active');
+    if (activeTab) updateTabContent(activeTab.dataset.tab);
+
+    // 点击切换
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", function () {
+        tabButtons.forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        updateTabContent(this.dataset.tab);
+      });
+    });
+
+    // 监听 resize
+    window.addEventListener("resize", function () {
+      const activeTab = section.querySelector('.tabs li.active');
+      if (activeTab) updateTabContent(activeTab.dataset.tab);
     });
   });
-  window.addEventListener("resize", function () {
-    const activeTab = document.querySelector('.tabs li.active');
-    if (activeTab) {
-      const tab = activeTab.getAttribute("data-tab");
-      updateTabContent(tab);
-    }
-  });
+});
+
 </script>

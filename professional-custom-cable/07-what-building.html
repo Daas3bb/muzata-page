@@ -1,0 +1,197 @@
+<style>
+  .building-container {
+    box-sizing: border-box;
+    background-color: #F7F7F7;
+    padding: 160px 0;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  .building-container h2 {
+    text-align: center;
+    margin: 0 0 60px;
+    padding: 0;
+    color: #1A1A1A;
+    font-family: Poppins;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -0.22px;
+  }
+
+  .building-container .content-mobile {
+    display: none;
+  }
+
+  .building-container .content-pc {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .building-container .content-pc .left {
+    max-width: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .building-container .content-pc .left-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .building-container .content-pc .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .building-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 780px) {
+    .building-container {
+      max-width: 100%;
+      padding: 48px 24px;
+    }
+
+    .building-container h2 {
+      margin: 0 0 36px;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -1px;
+    }
+
+    .building-container .content-pc {
+      display: none;
+    }
+
+    .building-container img {
+
+      border-radius: 8px;
+    }
+
+    .building-container .content-mobile {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .building-container .content-mobile .top {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .building-container .content-mobile .top-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .building-container .content-mobile .middle {
+      width: 100%;
+    }
+
+    .building-container .content-mobile .bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+  }
+</style>
+
+<div class="building-container">
+  <h2>See What Our Customers Are Building</h2>
+  <div class="content-pc">
+    <div class="left">
+      <div class="left-top">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-1-pc.webp?v=1763518199"
+          alt="family scene">
+      </div>
+      <div class="left-bottom">
+        <div class="left-bottom-left">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-2-pc.png?v=1763518182"
+            alt="Blue house">
+        </div>
+        <div class="left-bottom-right">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-3-pc.png?v=1763518156"
+            alt="white stairs">
+        </div>
+      </div>
+    </div>
+    <div class="middle">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-4-pc.webp?v=1763518122"
+        alt="desk">
+    </div>
+    <div class="right">
+      <div class="top">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-5-pc.png?v=1763518143"
+          alt="people">
+      </div>
+      <div class="bottom">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-6-pc.webp?v=1763518169"
+          alt="Cable railing">
+      </div>
+    </div>
+
+  </div>
+  <div class="content-mobile">
+    <div class="top">
+      <div class="top-left">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-4-pc.webp?v=1763518122"
+          alt="desk">
+      </div>
+      <div class="top-right">
+        <div class="top-right-top">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-5-pc.png?v=1763518143"
+            alt="people">
+        </div>
+        <div class="top-right-bottom">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-6-pc.webp?v=1763518169"
+            alt="Cable railing">
+        </div>
+      </div>
+    </div>
+    <div class="middle">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-1-pc.webp?v=1763518199"
+        alt="family scene">
+    </div>
+    <div class="bottom">
+      <div class="bottom-left"> <img
+          src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-2-pc.png?v=1763518182"
+          alt="Blue house"></div>
+      <div class="bottom-right"> <img
+          src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-building-3-pc.png?v=1763518156"
+          alt="white stairs"></div>
+    </div>
+
+  </div>
+
+</div>

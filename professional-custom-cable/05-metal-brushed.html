@@ -1,0 +1,254 @@
+<style>
+  .metal-brushed-container {
+    max-width: 1440px;
+    margin: 160px auto;
+  }
+
+  .metal-brushed-container h2 {
+    text-align: center;
+    margin: 0;
+    -webkit-text-stroke: 2px #004DA6;
+    -webkit-text-fill-color: transparent;
+    color: #004DA6;
+    font-family: Poppins;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -0.22px;
+  }
+
+  .metal-brushed-container p {
+    text-align: center;
+    margin: 0;
+    color: #1A1A1A;
+    font-family: Poppins;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -0.22px;
+  }
+
+  .metal-brushed-container .tabComponent {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+  }
+
+  .metal-brushed-container .tabComponent .tabs {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .metal-brushed-container .tabComponent .tabs li {
+    flex: 1;
+    text-align: center;
+    padding: 11px 24px;
+    font-family: Poppins;
+    color: #333;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: -0.15px;
+    cursor: pointer;
+    border-bottom: 1px solid #CCC;
+  }
+
+  .metal-brushed-container .tabComponent .tabs li.active {
+    color: #004DA6;
+    border-bottom: 3px solid #004DA6;
+  }
+
+  .metal-brushed-container .tabComponent .content {
+    margin: 32px 0;
+  }
+
+  .metal-brushed-container .tabComponent .content img {
+    width: 100%;
+    height: auto;
+  }
+
+  .metal-brushed-container .tabComponent button {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 385px;
+    height: 44px;
+    margin: 0 auto;
+    padding: 9px 36px;
+    background-color: #004DA6;
+    border-radius: 6px;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: -0.1px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .metal-brushed-container .tabComponent button:hover,
+  .metal-brushed-container .tabComponent button:active {
+    filter: brightness(1.2);
+  }
+
+
+  .metal-brushed-container .tabComponent button img {
+    margin-left: 8px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 780px) {
+    .metal-brushed-container {
+      max-width: 100%;
+      margin: 48px 24px;
+    }
+
+    .metal-brushed-container h2 {
+      text-align: center;
+      -webkit-text-stroke: 1.5px #004DA6;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -0.26px;
+    }
+
+    .metal-brushed-container p {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -1px;
+    }
+
+    .metal-brushed-container .tabComponent {
+      padding-top: 24px;
+    }
+
+    .metal-brushed-container .tabComponent .tabs li {
+      padding: 11px 4px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      letter-spacing: 0;
+    }
+
+    .metal-brushed-container .tabComponent .content {
+      margin: 16px 0;
+    }
+
+    .metal-brushed-container .tabComponent .content img {
+      width: 100%;
+      height: auto;
+    }
+
+    .metal-brushed-container .tabComponent button {
+      width: 284px;
+      height: 36px;
+      padding: 8px 20px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+  }
+</style>
+
+
+<div class="metal-brushed-container">
+  <h2>METAL BRUSHED</h2>
+  <p>Unique Metallic Texture</p>
+
+  <div class="tabComponent">
+    <ul class="tabs">
+      <li class="tab-suface-mount active" data-tab="surface">Surface mount</li>
+      <li class="tab-side-mount" data-tab="side">Side mount</li>
+      <li class="tab-slope-mount" data-tab="slope">Slope mount</li>
+    </ul>
+    <div class="content">
+      <img 
+        src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED-pc.webp?v=1763432327"
+        width="2880" height="1280" alt="metal-brushed-content">
+    </div>
+    <a href="https://muzatarailing.com/pages/request-free-estimate" target="_blank">
+      <button>Get My FREE Design & Quote
+        <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/right-top-arrow.svg?v=1763433761" width="16"
+          height="16" alt="arrow-icon">
+      </button>
+    </a>
+  </div>
+</div>
+
+<script>
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll('.metal-brushed-container');
+
+    sections.forEach(section => {
+      const tabButtons = section.querySelectorAll('.tabs li');
+      const tabImage = section.querySelector("img");
+
+      const tabConfig = {
+        surface: {
+          label: "Surface mount",
+          imageUrl: {
+            desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED-pc.webp?v=1763432327",
+            mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED.webp?v=1763432680"
+          }
+        },
+        side: {
+          label: "Side mount",
+          imageUrl: {
+            desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED-1-pc.webp?v=1763432343",
+            mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED-1.webp?v=1763432691"
+          }
+        },
+        slope: {
+          label: "Slope mount",
+          imageUrl: {
+            desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED-2-pc.webp?v=1763432362",
+            mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BRUSHED-2.webp?v=1763432667"
+          }
+        }
+      };
+
+      function getDeviceType() {
+        return window.innerWidth <= 780 ? 'mobile' : 'desktop';
+      }
+
+      function updateTabContent(tab) {
+        const deviceType = getDeviceType();
+        tabImage.src = tabConfig[tab].imageUrl[deviceType];
+      }
+
+      // 初始化加载 active tab
+      const activeTab = section.querySelector('.tabs li.active');
+      if (activeTab) updateTabContent(activeTab.dataset.tab);
+
+      // 点击切换
+      tabButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+          tabButtons.forEach(b => b.classList.remove("active"));
+          this.classList.add("active");
+          updateTabContent(this.dataset.tab);
+        });
+      });
+
+      // 监听 resize
+      window.addEventListener("resize", function () {
+        const activeTab = section.querySelector('.tabs li.active');
+        if (activeTab) updateTabContent(activeTab.dataset.tab);
+      });
+    });
+  });
+
+</script>
