@@ -38,6 +38,7 @@
   }
 
   .combinations-list-pc {
+
     max-width: 1440px;
     padding: 0;
     margin: 36px auto 0;
@@ -49,11 +50,13 @@
   }
 
   .combinations-list-pc li {
+    position: relative;
     flex: 1;
     min-height: 380px;
   }
 
   .combinations-list-pc li:nth-child(1) {
+
     background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/1-professional-custom-cable-comparison-pc.png?v=1763016456") center/contain no-repeat;
 
   }
@@ -64,6 +67,58 @@
 
   .combinations-list-pc li:nth-child(3) {
     background: url("https://cdn.shopify.com/s/files/1/0046/9742/3907/files/3-professional-custom-cable-comparison-pc.png?v=1763016497") center/contain no-repeat;
+  }
+
+  .combinations-list-pc .text-left {
+    position: absolute;
+    width: 179px;
+    bottom: 42px;
+    left: 30px;
+  }
+
+
+  .combinations-list-pc .text-right {
+    position: absolute;
+    width: 170px;
+    bottom: 42px;
+    right: 40px;
+  }
+
+  .combinations-list-pc p {
+    color: #333;
+    font-family: Poppins;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.08px;
+    padding: 0;
+
+  }
+
+  .combinations-list-pc span {
+    text-align: center;
+    color: #1A1A1A;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.08px;
+  }
+
+  .combinations-list-pc li:nth-of-type(3) .text-left {
+    bottom: 22px;
+    left: 10px;
+    width: 220px;
+  }
+
+  .combinations-list-pc li:nth-of-type(3) .text-right {
+    bottom: 42px;
+    width: 200px;
+    right: 20px;
+
   }
 
   @media (max-width: 780px) {
@@ -204,12 +259,33 @@
 
 
 <div class="abundant-options-container">
-  <h2>Abundant Options<br>Versatile Pairings</h2>
-  <p>Endless combinations with Muzata cable railing</p>
+  <h2>Abundant Options Versatile Pairings</h2>
+  <p>Endless combination s with Muzata cable railing</p>
   <ul class="combinations-list-pc">
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>
+      <div class="text-left">
+        <p> <span>Black-powder coated</span> Contemporary look</p>
+      </div>
+      <div class="text-right">
+        <p> <span>Brushed finish</span> Elegant appearance</p>
+      </div>
+    </li>
+    <li>
+      <div class="text-left">
+        <p> <span>36” for<br>residential project</span></p>
+      </div>
+      <div class="text-right">
+        <p> <span>42” for<br>commercial project</span></p>
+      </div>
+    </li>
+    <li>
+      <div class="text-left">
+        <p> <span>Surface mount</span><br> Long-lasting support and stability</p>
+      </div>
+      <div class="text-right">
+        <p> <span>Side mount</span><br> Maximizing Your Space</p>
+      </div>
+    </li>
   </ul>
   <ul class="combinations-list">
     <li class="list-finishing">

@@ -1,0 +1,221 @@
+<style>
+  .why-choose-container {
+    box-sizing: border-box;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 160px 0;
+  }
+
+  .why-choose-container h2 {
+    color: #1A1A1A;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -0.22px;
+    margin: 0 0 60px;
+    padding: 0;
+
+  }
+
+  .why-choose-container .choose-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .choose-content .left,
+  .choose-content .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .choose-content .img-mask {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+
+  }
+
+  .choose-content img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: inherit;
+    display: block;
+  }
+
+  .choose-content .img-mask::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(165deg,
+        rgba(247, 247, 247, 0.8) 18.9%,
+        rgba(228, 244, 255, 0) 38.81%);
+  }
+
+  .choose-content .img-text p {
+    position: absolute;
+    font-size: 16px;
+    top: 16px;
+    left: 24px;
+    right: 24px;
+    margin: 0;
+    color: #1A1A1A;
+    z-index: 2;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.08px;
+  }
+
+  .choose-content .right-bottom .img-text p {
+    width: 170px;
+
+  }
+
+  .img-text span {
+    color: #1A1A1A;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.08px;
+  }
+
+  @media(max-width:780px) {
+    .why-choose-container {
+      box-sizing: border-box;
+      max-width: 100%;
+      padding: 70px 24px;
+    }
+
+    .why-choose-container h2 {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 32px;
+      margin: 0 0 36px;
+      padding: 0 20px;
+    }
+
+    .why-choose-container .choose-content {
+      gap: 12px;
+      flex-direction: column;
+    }
+
+    .choose-content .left,
+    .choose-content .right {
+      flex-direction: row;
+      gap: 12px;
+    }
+
+    .choose-content .left-bottom {
+      order: -1;
+
+    }
+
+    .choose-content .img-mask {
+      border-radius: 8px;
+    }
+
+    .choose-content .img-text p {
+      font-size: 12px;
+      top: 8px;
+      left: 10px;
+      right: 10px;
+      line-height: 14px;
+    }
+
+    .choose-content .right-bottom .img-text p {
+      width: 120px;
+    }
+
+    .img-text span {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+</style>
+
+
+  <div class="why-choose-container">
+    <h2>Why Choose Muzata Baclony Railing</h2>
+    <div class="choose-content">
+      <div class="left">
+        <div class="left-top img-mask">
+          <div class="img-text">
+            <p><span>Unobstructed Design Railing</span>
+              for open＆clear views.</p>
+          </div>
+          <picture>
+            <source media="(max-width: 780px)"
+              srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-6.png?v=1763541520">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-5-pc.jpg?v=1763541197"
+              alt="selling point">
+          </picture>
+        </div>
+        <div class="left-bottom img-mask">
+          <div class="img-text">
+            <p><span>Family-Safe Design</span>protects kids and pets. </p>
+          </div>
+          <picture>
+            <source media="(max-width: 780px)"
+              srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-1.png?v=1763541511">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-1-pc.png?v=1763541099"
+              alt="selling point">
+          </picture>
+        </div>
+      </div>
+      <div class="middle img-mask">
+        <div class="img-text">
+          <p><span>Durable, Corrosion-Resistant Railing</span> built to last-for rainy days and beyond.</p>
+        </div>
+        <picture>
+          <source media="(max-width: 780px)"
+            srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-2.png?v=1763541590">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-2-pc.jpg?v=1763541129"
+            alt="selling point">
+        </picture>
+      </div>
+      <div class="right">
+        <div class="right-top img-mask">
+          <div class="img-text">
+            <p><span>Multiple Style Solutions</span> to match your space.</p>
+          </div>
+          <picture>
+            <source media="(max-width: 780px)"
+              srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-4.png?v=1763541606">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-3-pc.png?v=1763541145"
+              alt="selling point">
+          </picture>
+        </div>
+        <div class="right-bottom img-mask">
+          <div class="img-text">
+            <p><span>Invisible Hardware</span> for a sleek, clean line.</p>
+          </div>
+
+          <picture>
+            <source media="(max-width: 780px)"
+              srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-5.png?v=1763541621">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-selling-points-4-pc.png?v=1763541164"
+              alt="selling point">
+          </picture>
+        </div>
+      </div>
+
+    </div>
+  </div>

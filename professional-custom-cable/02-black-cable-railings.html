@@ -191,11 +191,9 @@
     const items = document.querySelectorAll(".selling-point-list li");
     items.forEach(item => {
       item.addEventListener("click", () => {
-        items.forEach(i => i.classList.remove("active"));
-        item.classList.add("active");
+    
+        item.classList.toggle("active");
       })
     })
-
-
   }
 </script>

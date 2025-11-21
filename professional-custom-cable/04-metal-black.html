@@ -165,7 +165,7 @@
 
 
 <div class="metal-black-container">
-  <h2>Metal Black</h2>
+  <h2>METAL BLACK</h2>
   <p>Sleek Contemporary Vibes</p>
 
   <div class="tabComponent">
@@ -176,7 +176,7 @@
     </ul>
     <div class="content">
       <img
-        src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763432273"
+        src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763687432"
         width="2880" height="1280" alt="metal-black-content">
     </div>
     <a href="https://muzatarailing.com/pages/request-free-estimate" target="_blank">
@@ -189,62 +189,62 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const sections = document.querySelectorAll('.metal-black-container');
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll('.metal-black-container');
 
-  sections.forEach(section => {
-    const tabButtons = section.querySelectorAll('.tabs li');
-    const tabImage = section.querySelector("img");
-    
-    const tabConfig = {
-      surface: {
-        imageUrl: {
-          desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763432273",
-          mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK.webp?v=1763432713"
+    sections.forEach(section => {
+      const tabButtons = section.querySelectorAll('.tabs li');
+      const tabImage = section.querySelector("img");
+
+      const tabConfig = {
+        surface: {
+          imageUrl: {
+            desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable_METAL_BLACK_pc.webp?v=1763687432",
+            mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK.webp?v=1763432713"
+          }
+        },
+        side: {
+          imageUrl: {
+            desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-1-pc.webp?v=1763687720",
+            mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-1.webp?v=1763432725"
+          }
+        },
+        slope: {
+          imageUrl: {
+            desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-2-pc.webp?v=1763432309",
+            mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-2.webp?v=1763432702"
+          }
         }
-      },
-      side: {
-        imageUrl: {
-          desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-pc.webp?v=1763432291",
-          mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-1.webp?v=1763432725"
-        }
-      },
-      slope: {
-        imageUrl: {
-          desktop: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-METAL_BLACK-2-pc.webp?v=1763432309",
-          mobile: "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/professional-cable-WOOD-1.webp?v=1763432748"
-        }
+      };
+
+      function getDeviceType() {
+        return window.innerWidth <= 780 ? 'mobile' : 'desktop';
       }
-    };
 
-    function getDeviceType() {
-      return window.innerWidth <= 780 ? 'mobile' : 'desktop';
-    }
+      function updateTabContent(tab) {
+        const deviceType = getDeviceType();
+        tabImage.src = tabConfig[tab].imageUrl[deviceType];
+      }
 
-    function updateTabContent(tab) {
-      const deviceType = getDeviceType();
-      tabImage.src = tabConfig[tab].imageUrl[deviceType];
-    }
-
-    // 初始化加载 active tab
-    const activeTab = section.querySelector('.tabs li.active');
-    if (activeTab) updateTabContent(activeTab.dataset.tab);
-
-    // 点击切换
-    tabButtons.forEach(btn => {
-      btn.addEventListener("click", function () {
-        tabButtons.forEach(b => b.classList.remove("active"));
-        this.classList.add("active");
-        updateTabContent(this.dataset.tab);
-      });
-    });
-
-    // 监听 resize
-    window.addEventListener("resize", function () {
+      // 初始化加载 active tab
       const activeTab = section.querySelector('.tabs li.active');
       if (activeTab) updateTabContent(activeTab.dataset.tab);
+
+      // 点击切换
+      tabButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+          tabButtons.forEach(b => b.classList.remove("active"));
+          this.classList.add("active");
+          updateTabContent(this.dataset.tab);
+        });
+      });
+
+      // 监听 resize
+      window.addEventListener("resize", function () {
+        const activeTab = section.querySelector('.tabs li.active');
+        if (activeTab) updateTabContent(activeTab.dataset.tab);
+      });
     });
   });
-});
 
 </script>

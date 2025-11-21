@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfect Railing Slideshow</title>
+  <style>
+    .perfect-railing-container {
+      box-sizing: border-box;
+      max-width: 1920px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      text-align: center;
+    }
+
+    .perfect-railing-container h2 {
+      color: #1A1A1A;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 44px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 52px;
+      letter-spacing: -0.22px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .perfect-railing-container p {
+      color: #333;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 38px;
+      letter-spacing: -0.15px;
+      margin: 0;
+      padding: 24px 0 60px;
+    }
+
+    /* 轮播区域 */
+    .perfect-railing-slideshow {
+      min-height: 760px;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .perfect-railing-slideshow .slide {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+
+    .perfect-railing-slideshow .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .perfect-railing-slideshow img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 左右切换按钮 */
+    .perfect-railing-slideshow .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      /* opacity: 0; */
+      transition: opacity 0.3s ease;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .perfect-railing-slideshow .nav-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .perfect-railing-slideshow .nav-btn.prev {
+      left: 240px;
+    }
+
+    .perfect-railing-slideshow .nav-btn.next {
+      right: 240px;
+    }
+
+    .perfect-railing-slideshow:hover .nav-btn {
+      opacity: 1;
+    }
+
+    /* 描述信息 */
+    .perfect-railing-slideshow .descrition button {
+      position: absolute;
+      text-align: left;
+      width: 263px;
+      height: 44px;
+      z-index: 10;
+      bottom: 60px;
+      right: 246px;
+      border: none;
+      padding: 9px 36px;
+      border-radius: 6px;
+      color: #004DA6;
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 26px;
+      letter-spacing: -0.1px;
+
+
+    }
+
+    .perfect-railing-slideshow .descrition button img {
+      position: absolute;
+      width: 16px;
+      background-color: #004DA6;
+      top: 50%;
+      right: 36px;
+      transform: translate(-50%, -50%);
+
+    }
+
+    .perfect-railing-slideshow .descrition .text {
+      position: absolute;
+      z-index: 10;
+      bottom: 60px;
+      left: 240px;
+    }
+
+    .perfect-railing-slideshow .descrition .text h3 {
+      text-align: left;
+      color: #FFF;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.50);
+      font-family: Poppins;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 38px;
+      letter-spacing: -0.15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .perfect-railing-slideshow .descrition .text p:nth-of-type(1) {
+      text-align: left;
+      margin: 0;
+      padding: 0;
+      color: #FFF;
+      font-family: Poppins;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+      letter-spacing: -0.12px;
+    }
+
+    .perfect-railing-slideshow .descrition .text p:nth-of-type(2) {
+      text-align: left;
+      margin: 0;
+      padding: 24px 0 0;
+      color: var(--02_-, #FFF);
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: -0.1px;
+    }
+
+    .perfect-railing-slideshow .descrition .text p:nth-of-type(2) span {
+      color: var(--02_-, #FFF);
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 26px;
+      letter-spacing: -0.1px;
+    }
+
+    /* 圆点容器 */
+    .perfect-railing-slideshow .dots {
+      position: absolute;
+      width: 108px;
+      height: 12px;
+      z-index: 10;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* 单个圆点 */
+    .perfect-railing-slideshow .dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    /* 当前圆点高亮 */
+    .perfect-railing-slideshow .dots span.active {
+      background: rgba(255, 255, 255, 0.90);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="perfect-railing-container">
+    <h2>Find The Perfect Railing for Your Balcony</h2>
+    <p>Metal balcony railing & Wooden balcony railing</p>
+
+    <div class="perfect-railing-slideshow">
+      <!-- 左右切换按钮 -->
+      <button class="nav-btn prev">‹</button>
+      <button class="nav-btn next">›</button>
+      <!-- 图片描述信息 -->
+      <div class="descrition">
+        <div class="text">
+          <h3>Black Cable Balcony Railing</h3>
+          <p>Minimalist Style</p>
+          <p>The black metal finish is sleek and minimalist, a popular <span>railing design for balcony.</span></p>
+        </div>
+        <button>Get a Free Quote
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/right-top-arrow.svg?v=1763433761"
+            alt="right top arrow">
+        </button>
+      </div>
+      <!-- 轮播图 slides -->
+      <div class="slide">
+        <picture>
+          <source media="(max-width: 780px)"
+            srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-1.jpg?v=1763541964">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-1-pc.jpg?v=1763541757"
+            alt="design inspiration 1">
+        </picture>
+      </div>
+
+      <div class="slide">
+        <picture>
+          <source media="(max-width: 780px)"
+            srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-2.jpg?v=1763541978">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-2-pc.jpg?v=1763541789"
+            alt="design inspiration 2">
+        </picture>
+      </div>
+
+      <div class="slide">
+        <picture>
+          <source media="(max-width: 780px)"
+            srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-3.jpg?v=1763542007">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-3-pc.jpg?v=1763541841"
+            alt="design inspiration 3">
+        </picture>
+      </div>
+
+      <div class="slide">
+        <picture>
+          <source media="(max-width: 780px)"
+            srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-4.jpg?v=1763541992">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-4-pc.jpg?v=1763541825"
+            alt="design inspiration 4">
+        </picture>
+      </div>
+
+      <div class="slide">
+        <picture>
+          <source media="(max-width: 780px)"
+            srcset="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-5.jpg?v=1763542023">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/baclony-railing-design_inspiration-5-pc.jpg?v=1763541809"
+            alt="design inspiration 5">
+        </picture>
+      </div>
+      <!-- 圆点导航 -->
+      <div class="dots"></div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const slideshow = document.querySelector('.perfect-railing-slideshow');
+  const slides = slideshow.querySelectorAll('.slide');
+  const prevBtn = slideshow.querySelector('.nav-btn.prev');
+  const nextBtn = slideshow.querySelector('.nav-btn.next');
+  const dotsContainer = slideshow.querySelector('.dots');
+
+  let current = 0;
+  const total = slides.length;
+  let autoPlayTimer = null;
+  const autoplayDelay = 3000;
+
+  // 初始化圆点
+  const dots = [];
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('span');
+    dot.addEventListener('click', () => {
+      current = i;
+      showSlide(current);
+      resetAutoplay();
+    });
+    dotsContainer.appendChild(dot);
+    dots.push(dot);
+  }
+
+  function showSlide(index) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function nextSlide() {
+    current = (current + 1) % total;
+    showSlide(current);
+  }
+
+  function prevSlide() {
+    current = (current - 1 + total) % total;
+    showSlide(current);
+  }
+
+  function startAutoplay() {
+    autoPlayTimer = setInterval(nextSlide, autoplayDelay);
+  }
+
+  function stopAutoplay() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  }
+
+  function resetAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+
+  nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+  prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+  // 初始化显示
+  showSlide(current);
+  startAutoplay();
+});
+
+  </script>
+
+</body>
+
+</html>

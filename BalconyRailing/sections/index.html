@@ -1,0 +1,235 @@
+<style>
+  h1 {
+      font-size: 65px;
+  }
+
+  .img-box img:hover {
+      opacity: 0.8;
+  }
+
+  p.h1-p {
+      display: inline-block;
+      color: #004da6;
+  }
+
+  p.h1-p-2 {
+      font-size: 45px;
+      font-weight: 500;
+  }
+
+  .container-fluid {
+      text-align: center;
+  }
+
+  .header-img {
+      width: 160px;
+      height: auto;
+      margin: 30px auto;
+  }
+
+  .content {
+      padding: 20px;
+  }
+
+  p.content_p {
+      font-size: 22px;
+      margin: 50px auto;
+  }
+
+  .content_p_span {
+      color: #004da6;
+  }
+
+  .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+      max-width: 1920px;
+      margin: auto;
+  }
+
+  .carousel-track {
+      display: flex;
+      width: max-content;
+      animation: scroll-left 20s linear infinite;
+      align-items: flex-end;
+      gap: 20px;
+  }
+
+  .carousel:hover .carousel-track {
+      animation-play-state: paused;
+  }
+
+  .carousel img {
+      object-fit: contain;
+      cursor: pointer;
+      margin-right: 10px;
+      user-select: none;
+  }
+
+  .carousel img:hover {
+      opacity: 0.8;
+  }
+
+  @keyframes scroll-left {
+      0% {
+          transform: translateX(0);
+      }
+
+      100% {
+          transform: translateX(-50%);
+      }
+  }
+
+  @media (max-width: 767px) {
+      .header-img {
+          width: 80px;
+          height: auto;
+          margin: 0px auto;
+      }
+.content_p_span {
+    color: #004da6;
+    font-size: 16px;
+    font-weight: 600;
+}
+      h1 {
+          font-size: 25px;
+      }
+
+      p.h1-p-2 {
+          font-size: 16px;
+      }
+
+      p.content_p {
+          font-size: 14px;
+          margin: 30px auto 20px;
+      }
+
+      .content_p strong {
+          display: block;
+      }
+
+      .content {
+          padding: 20px 0px 0 0px;
+      }
+
+      /* 手机端图片缩小处理 */
+      .carousel img {
+          max-width: 260px;
+          height: auto;
+          margin-right: 0px;
+      }
+      .carousel-track {
+          gap: 10px;
+      }
+  }
+  .content_p strong {
+          display: block;
+      }
+
+  /* FancyBox 图片样式 */
+  .fancybox-content {
+      max-width: 90vw;
+      max-height: 80vh;
+  }
+</style>
+
+<div class="container-fluid">
+  <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/avatar.webp?v=1750728504" alt="Header Image"
+      class="header-img">
+
+  <div class="content">
+      <h1>Celebrating the 🎉<p class="h1-p">WINNERS</p>
+          <p class="h1-p-2">Muzata's 1st Spring Photo Contest</p>
+      </h1>
+      <p class="content_p">We are thrilled to share the results of our </br><strong>1st Spring Photo Contest!</strong>
+          <span class="content_p_span">579</span> talented storytellers
+          </br><span class="content_p_span">3,286</span> breathtaking moments captured
+          </br>Countless ways cable railings framed spring's beauty 🌸</p>
+  </div>
+
+  <div class="carousel">
+      <div class="carousel-track">
+          <!-- 原始图片组，添加 FancyBox 触发器 -->
+          <a data-fancybox="carousel-gallery" href="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_HD_chart-1.webp?v=1751009335" data-index="1">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-1.webp?v=1750729230" alt="Photo 1">
+          </a>
+          <a data-fancybox="carousel-gallery" href="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_HD_chart-2.webp?v=1751009335" data-index="2">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-2.webp?v=1750729230" alt="Photo 2">
+          </a>
+          <a data-fancybox="carousel-gallery" href="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_HD_chart-3.webp?v=1751009335" data-index="3">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-3.webp?v=1750729230" alt="Photo 3">
+          </a>
+          <a data-fancybox="carousel-gallery" href="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_HD_chart-4.webp?v=1751009335" data-index="4">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-4.webp?v=1750729230" alt="Photo 4">
+          </a>
+          <a data-fancybox="carousel-gallery" href="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_HD_chart-5.webp?v=1751009335" data-index="5">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-5.webp?v=1750729230" alt="Photo 5">
+          </a>
+          <a data-fancybox="carousel-gallery" href="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_HD_chart-6.webp?v=1751009335" data-index="6">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-6.webp?v=1750729230" alt="Photo 6">
+          </a>
+
+          <!-- 复制图片组，用于无缝滚动，添加空 <a> 标签 -->
+          <a class="duplicate" data-index="1">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-1.webp?v=1750729230" alt="Photo 1">
+          </a>
+          <a class="duplicate" data-index="2">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-2.webp?v=1750729230" alt="Photo 2">
+          </a>
+          <a class="duplicate" data-index="3">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-3.webp?v=1750729230" alt="Photo 3">
+          </a>
+          <a class="duplicate" data-index="4">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-4.webp?v=1750729230" alt="Photo 4">
+          </a>
+          <a class="duplicate" data-index="5">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-5.webp?v急速v=1750729230" alt="Photo 5">
+          </a>
+          <a class="duplicate" data-index="6">
+              <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/rotating_chart-6.webp?v=1750729230" alt="Photo 6">
+          </a>
+      </div>
+  </div>
+</div>
+
+<script>
+  // 确保在 DOM 加载完成后绑定事件
+  document.addEventListener('DOMContentLoaded', () => {
+      // 初始化 FancyBox（假定已由 .award-section 引入 jQuery 和 FancyBox JS）
+      Fancybox.bind("[data-fancybox]", {
+          // 配置选项，与 .award-section 保持一致
+          loop: true, // 循环浏览
+          buttons: [
+              "zoom", // 缩放
+              "slideShow", // 自动播放
+              "fullScreen", // 全屏
+              "close" // 关闭按钮
+          ],
+          animationEffect: "zoom", // 动画效果
+          transitionEffect: "slide", // 切换效果
+          on: {
+              init: () => {
+                  // 可选：初始化时执行
+              },
+              ready: () => {
+                  // 可选：画廊加载完成时执行
+              }
+          }
+      });
+
+      // 为复制图片的 <a> 标签添加点击事件，触发对应的原始图片 FancyBox
+      document.querySelectorAll('.carousel-track a.duplicate').forEach(duplicateLink => {
+          duplicateLink.addEventListener('click', () => {
+              const index = duplicateLink.getAttribute('data-index');
+              const originalLink = document.querySelector(`.carousel-track a[data-fancybox="carousel-gallery"][data-index="${index}"]`);
+              if (originalLink) {
+                  originalLink.click(); // 触发对应的原始图片 FancyBox
+              } else {
+                  console.error(`No original link found for data-index="${index}"`);
+              }
+          });
+      });
+  });
+</script>
