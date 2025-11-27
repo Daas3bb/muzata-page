@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 <style>
   .perfect-railing-container {
     position: relative;
@@ -47,6 +54,7 @@
     overflow: hidden;
     list-style: none;
     touch-action: pan-y;
+    transition: transform 0.5s ease;
 
   }
 
@@ -186,8 +194,7 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
-    opacity: 0;
-    transition: background 0.3s, opacity 0.3s;
+
   }
 
 
@@ -343,9 +350,8 @@
 
   }
 </style>
-</head>
-
-
+<body>
+  
 <div class="perfect-railing-container">
   <h2>Find The Perfect Railing for Your Balcony</h2>
   <p>Metal balcony railing & Wooden balcony railing</p>
@@ -454,343 +460,165 @@
 
 
 </div>
-
 <script>
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // --- PC端图片描述信息 start--- //
-    const descriptions = [
-      {
-        title: "Black Cable Balcony Railing",
-        subtitle: "Minimalist Style",
-        text: "The black metal finish is sleek and minimalist, a popular <span>railing design for balcony.</span>"
-      },
-      {
-        title: "Illuminated Handrail Balcony Railing",
-        subtitle: "Modern Style ",
-        text: "With a modern, tech-inspired look and strong visual appeal, this is a fresh <span>balcony railing idea</span>, perfect for stylish and slightly luxurious spaces."
-      },
-      {
-        title: "Brushed Cable Balcony Railing",
-        subtitle: "Industrial Style or Modern Style",
-        text: "Brushed metal offers texture with a slightly rugged feel, a typical industrial material. Common in modern designs, it enhances the look of <span>stainless steel railings</span> and other <span>balcony railings.</span>"
-      },
-      {
-        title: "Dark Wooden Balcony Railing",
-        subtitle: "Cottage or Rustic Style",
-        text: "Dark wood is elegant and natural, bringing a rustic feel to any <span>balcony railing design.</span"
-      },
-      {
-        title: "Light Wooden Balcony Railing",
-        subtitle: "Scandinavian Style",
-        text: "Light wood is bright and natural, fitting Nordic-style simplicity and warmth, ideal for <span>balcony railing.</span>"
-      }
-    ];
-
-    // 切换图片时更新描述信息
-    function updateDescription(index) {
-      const realIndex = index % descriptions.length;
-      const desc = descriptions[realIndex];
-      const textEl = document.querySelector('.perfect-railing-slide-show .description .text');
-
-      textEl.innerHTML = `
-              <h3 class="title">${desc.title}</h3>
-              <p class="subtitle">${desc.subtitle}</p>
-              <p class="main-body">${desc.text}</p>
-            `;
+document.addEventListener('DOMContentLoaded', function () {
+  // --- 图片描述信息 ---
+  const descriptions = [
+    {
+      title: "Black Cable Balcony Railing",
+      subtitle: "Minimalist Style",
+      text: "The black metal finish is sleek and minimalist, a popular <span>railing design for balcony.</span>"
+    },
+    {
+      title: "Illuminated Handrail Balcony Railing",
+      subtitle: "Modern Style ",
+      text: "With a modern, tech-inspired look and strong visual appeal, this is a fresh <span>balcony railing idea</span>, perfect for stylish and slightly luxurious spaces."
+    },
+    {
+      title: "Brushed Cable Balcony Railing",
+      subtitle: "Industrial Style or Modern Style",
+      text: "Brushed metal offers texture with a slightly rugged feel, a typical industrial material. Common in modern designs, it enhances the look of <span>stainless steel railings</span> and other <span>balcony railings.</span>"
+    },
+    {
+      title: "Dark Wooden Balcony Railing",
+      subtitle: "Cottage or Rustic Style",
+      text: "Dark wood is elegant and natural, bringing a rustic feel to any <span>balcony railing design.</span>"
+    },
+    {
+      title: "Light Wooden Balcony Railing",
+      subtitle: "Scandinavian Style",
+      text: "Light wood is bright and natural, fitting Nordic-style simplicity and warmth, ideal for <span>balcony railing.</span>"
     }
+  ];
 
+  function updateDescription(index) {
+    const realIndex = index % descriptions.length;
+    const desc = descriptions[realIndex];
+    const textEl = document.querySelector('.perfect-railing-slide-show .description .text');
+    textEl.innerHTML = `
+      <h3 class="title">${desc.title}</h3>
+      <p class="subtitle">${desc.subtitle}</p>
+      <p class="main-body">${desc.text}</p>
+    `;
+  }
 
-    // --- PC端轮播逻辑 start--- //
-    let oSlideShow = document.querySelector('.perfect-railing-slide-show');
-    //所有图片横向排列的长图
-    let oPicList = oSlideShow.querySelector('.pic-list');
-    let aPic = oPicList.querySelectorAll('li');
-    let oBtnWrap = oSlideShow.querySelector('.btn-wrap');
-    let oSlider = oSlideShow.querySelector('.slider');
-    let aSlider = oSlider.children;
+  // --- 轮播图核心 ---
+  let oSlideShow = document.querySelector('.perfect-railing-slide-show');
+  let oPicList = oSlideShow.querySelector('.pic-list');
+  let aPic = oPicList.querySelectorAll('li');
+  let oBtnWrap = oSlideShow.querySelector('.btn-wrap');
+  let oSlider = oSlideShow.querySelector('.slider');
+  let aDots;
 
+  let picW = aPic[0].offsetWidth;
+  let index = 0;
+  let picLen = aPic.length;
+  let timer = null;
+  let isAnimating = false;
 
-    //不包含margin的图片宽度
-    let picW = aPic[0].offsetWidth;
-    //@@@@
-    console.log('picW:', picW);
-    let picLen = aPic.length + 1;
-    let index = 0;
-    let timer;
-    console.log("before init PicList:", oPicList.offsetWidth);
-    init();
+  init();
 
+  // --- 初始化 ---
+  function init() {
+    // 克隆首图用于无缝
+    let clone = aPic[0].cloneNode(true);
+    oPicList.appendChild(clone);
 
-    let tapMap = {
-      'prev': function (e) {
-        move(function () {
-          // 如果是首图 则跳到最后一张
-          if (index === 0) {
-            index = aPic.length - 1;
-            // 通过picList长图的右移实现上一张图片的切换
-            oPicList.style.marginLeft = -index * picW + 'px';
-          }
-          index--;
-          index = (picLen + index) % picLen;
-          console.log('prev index:', index);
-          updateDescription(index % descriptions.length);
-        });
-      },
-      'next': function (e) {
-        move(function () {
-          if (index === aPic.length - 1) {
-            index = 0;
-            oPicList.style.marginLeft = -index * picW + 'px';
-          }
-          index++;
-          index = index % picLen;
-          console.log('next index:', index);
-          updateDescription(index);
-        });
-      }
+    // 设置总宽度（px）
+    oPicList.style.width = (picW * (picLen + 1)) + 'px';
+
+    // 添加圆点
+    let dotHTML = '';
+    for (let i = 0; i < picLen; i++) {
+      dotHTML += `<span class="${i === 0 ? 'active' : ''}"></span>`;
     }
+    oSlider.innerHTML = dotHTML;
+    aDots = oSlider.querySelectorAll('span');
 
-    // 初始化
-    function init() {
-      let spanStr = '';
-      let firstClass = '';
+    updateDescription(0);
+  }
 
-      // oPicList.style.width = `${picLen * 100}%`;
-      oPicList.style.width = `${picW * picLen}px`;
-      console.log('oPicList width set to:', oPicList.style.width);
+  // --- 用 transform 实现滑动 ---
+  function moveTo(i, withAnimation = true) {
+    if (isAnimating) return;
+    isAnimating = true;
 
-      console.log("after init PicList:", oPicList.offsetWidth);
+    oPicList.style.transition = withAnimation ? "transform 0.5s ease" : "none";
+    oPicList.style.transform = `translateX(${-i * picW}px)`;
 
-      for (let i = 0; i < picLen - 1; i++) {
-        firstClass = ''
-        if (i === 0) {
-          firstClass = 'class="active"';
-        }
-        spanStr += `<span ${firstClass}></span>`;
-      }
-      oSlider.innerHTML = spanStr;
-      oPicList.appendChild(aPic[0].cloneNode(true));
-      aPic = document.querySelectorAll('.pic-list li');
-      // autoTranslate();
-    }
+    index = i;
 
-    // 鼠标进入整个轮播区域
-    oSlideShow.addEventListener('mouseenter', function () {
-      // 暂停自动轮播
-      // clearInterval(timer);
-      // console.log('鼠标移入暂停自动轮播');
-      //显示左右按钮
-      oBtnWrap.querySelectorAll('span').forEach(btn => btn.style.opacity = '1');
+    // 动画结束检查是否需要瞬移
+    oPicList.addEventListener('transitionend', function handler() {
+      oPicList.removeEventListener('transitionend', handler);
+      isAnimating = false;
 
-    }, false);
-
-    // 鼠标离开整个轮播区域
-    oSlideShow.addEventListener('mouseleave', function () {
-      // 启动自动轮播
-      // autoTranslate();
-      // console.log('鼠标移出启动自动轮播');
-      //隐藏左右按钮
-      oBtnWrap.querySelectorAll('span').forEach(btn => btn.style.opacity = '0');
-
-    }, false);
-
-
-
-    // 左右按钮点击事件
-    oBtnWrap.addEventListener('click', function (e) {
-      console.log('btn click');
-      e = e || window.event;//兼容老浏览器（IE）
-      console
-      if (e.target.tagName.toLowerCase() === 'span') {
-        console.log('span click');
-        let btn = e.target;
-        if (tapMap[btn.className] && typeof tapMap[btn.className] === 'function') {
-          console.log('准备执行next/prev函数');
-          tapMap[btn.className](e);
-        }
-
-      }
-    }, false);
-
-    //鼠标移入圆点导航切换图片
-    oSlider.addEventListener('mouseover', function (e) {
-      e = e || window.event;
-      if (e.target.tagName.toLowerCase() === 'span') {
-        let sliderBtn = e.target;
-        move(function () {
-
-          //  返回该<span> 在父元素中的 索引值
-          index = getElementIdx(sliderBtn);
-        })
-      }
-    }, false);
-
-    // --- PC端轮播逻辑 end--- //
-
-
-    // --- 移动端 start--- //
-    let startX = 0;
-    let moveX = 0;
-    let endX = 0;
-    let isMove = false;
-    let isAnimating = false;
-
-    oPicList.addEventListener('touchstart', function (e) {
-      clearInterval(timer); //手指按下暂停自动轮播
-      startX = e.touches[0].clientX;
-      isMove = false;
-    }, false);
-
-    oPicList.addEventListener('touchmove', function (e) {
-      moveX = e.touches[0].clientX;
-      isMove = true;
-    }, false);
-
-    oPicList.addEventListener('touchend', function () {
-      endX = moveX - startX; //滑动距离
-
-      if (!isMove) {
-        // autoTranslate();
-        return;
+      // 尾图 -> 第一张（无动画）
+      if (index === picLen) {
+        oPicList.style.transition = "none";
+        oPicList.style.transform = "translateX(0px)";
+        index = 0;
       }
 
-      // 判断滑动方向
-      if (endX > 50) {
-        tapMap['prev'](); //右滑 → 上一张
-      } else if (endX < -50) {
-        tapMap['next'](); //左滑 → 下一张
-      }
-//手指松开，继续自动轮播
-      // autoTranslate(); 
-    }, false);
-
-
-    const textContainer = document.querySelector('.perfect-railing-slide-show .description .text');
-
-    let startY = 0;
-    let isScrolling = false;
-    let targetBody = null;
-
-    textContainer.addEventListener('touchstart', function (e) {
-      const el = e.target.closest('.main-body'); // 找到 main-body
-      if (!el) return; // 点击的不是 main-body 不处理
-
-      targetBody = el;
-      startY = e.touches[0].clientY;
-      isScrolling = false;
+      updateDots();
+      updateDescription(index);
     });
+  }
 
-    textContainer.addEventListener('touchmove', function (e) {
-      if (!targetBody) return;
-      const moveY = e.touches[0].clientY;
-      if (Math.abs(moveY - startY) > 5) {
-        isScrolling = true;
-      }
-    });
+  function updateDots() {
+    aDots.forEach(dot => dot.classList.remove('active'));
+    aDots[index % picLen].classList.add('active');
+  }
 
-    textContainer.addEventListener('touchend', function (e) {
-      if (!targetBody) return;
-
-      if (!isScrolling) {
-        targetBody.classList.toggle('expanded');
-      }
-
-      targetBody = null; // 释放
-    });
-
-
-    // --- end 移动端 --- //
-
-
-    // --- 工具方法 --- //
-    function move(callback) {
-      if (isAnimating) return; // 正在动画中不执行
-      isAnimating = true; // 设置动画锁
-      // 移除旧圆点
-      aSlider[index % (aPic.length - 1)].classList.remove('active');
-      // 执行 callback (修改 index)
-      callback && callback();
-      // 更新新的圆点
-      aSlider[index % (aPic.length - 1)].classList.add('active');
-      updateDescription(index % (aPic.length - 1));
-      // 执行动画
-      animate(oPicList, { marginLeft: -index * picW + 'px' }, function () {
-        isAnimating = false; // 动画完成解除锁
-      });
-
+  // 左右按钮
+  oBtnWrap.addEventListener('click', e => {
+    if (e.target.closest('.prev')) {
+      moveTo((index - 1 + picLen) % picLen);
     }
-
-
-    //自动切换 轮播 next
-    function autoTranslate() {
-      clearInterval(timer);
-      timer = setInterval(function () {
-        tapMap['next']();
-      }, 3000)
+    if (e.target.closest('.next')) {
+      moveTo(index + 1);
     }
-
-    //获取元素实际样式
-    function getStyle(obj, attr) {
-      return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
-    }
-
-    //获取元素对象下标
-    function getElementIdx(item) {
-      let elements = item.parentNode.children;
-      for (let i = 0, len = elements.length; i < len; i++) {
-        if (item === elements[i]) {
-          return i;
-        }
-      }
-    }
-
-    /**
-   * animate Funtion
-   *  对指定元素执行缓动动画（多属性支持）
-   * @author Giselle
-   * @param {HTMLElement} ele - 要执行动画的元素
-   * @param {Object} json - 目标属性及其数值，例如 { left: 200, top: 100 }
-   * @param {Function} [callback] - 动画完成后的回调函数（可选）
-   */
-    function animate(ele, json, callback) {
-      clearInterval(ele.time);
-
-      // /goal：用于判断所有属性是否都达到目标值
-      let goal = false;
-
-      ele.time = setInterval(function () {
-
-        //每次定时循环都假设每一帧所有属性都已经到达目标
-        goal = true;
-        //遍历要变化的属性
-        for (let key in json) {
-          let target = parseInt(json[key])
-          let curr = parseInt(getStyle(ele, key));
-          //计算缓动速度
-          let speed = (target - curr) / 10;
-          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
-
-          if (curr === target) {
-            ele.style[key] = target + 'px';
-          }
-
-          //下一帧位置=当前值+缓动速度
-          ele.style[key] = curr + speed + 'px';
-
-          if (curr !== target) {
-            //只要有某一个属性的值不到指定结果 继续执行
-            goal = false;
-          }
-        }
-
-        if (goal) {
-          clearInterval(ele.time);
-          callback && callback();
-        }
-      }, 1000 / 60);
-    }
-
   });
 
+  // 圆点
+  oSlider.addEventListener('click', e => {
+    if (e.target.tagName === 'SPAN') {
+      let i = [...aDots].indexOf(e.target);
+      moveTo(i);
+    }
+  });
+
+  // --- 移动端滑动 ---
+  let startX = 0, deltaX = 0;
+
+  oPicList.addEventListener('touchstart', e => {
+    oPicList.style.transition = "none";
+    startX = e.touches[0].clientX;
+  });
+
+  oPicList.addEventListener('touchmove', e => {
+    deltaX = e.touches[0].clientX - startX;
+    oPicList.style.transform = `translateX(${ -index * picW + deltaX}px)`;
+  });
+
+  oPicList.addEventListener('touchend', () => {
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0) moveTo((index - 1 + picLen) % picLen); // 向右滑
+      else moveTo(index + 1);                               // 向左滑
+    } else {
+      moveTo(index); // 回弹
+    }
+    deltaX = 0;
+  });
+});
+
+
 </script>
+</body>
+
+</html>
+
+
+
+
+

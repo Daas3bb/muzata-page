@@ -20,7 +20,6 @@
   }
 
 
-
   .abundant-options-container p {
     color: #333;
     font-family: Poppins, sans-serif;
@@ -136,6 +135,11 @@
       font-weight: 600;
       line-height: 32px;
       padding: 0;
+      max-width: 100%;
+      width: 100%;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
     }
 
     .abundant-options-container p {
@@ -259,8 +263,8 @@
 
 
 <div class="abundant-options-container">
-  <h2>Abundant Options Versatile Pairings</h2>
-  <p>Endless combination s with Muzata cable railing</p>
+  <h2>Abundant Options, Versatile Pairings</h2>
+  <p>Endless combinations with Muzata cable railing</p>
   <ul class="combinations-list-pc">
     <li>
       <div class="text-left">
@@ -292,8 +296,8 @@
       <div class="title" onclick="toggleContent(this)">
         <p>Finishing</p>
         <div class="icon">
-          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289"
-            alt="Top Arrow Icon" width="16" height="16">
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613"
+            alt="Bottom Arrow Icon" width="16" height="16">
         </div>
       </div>
       <div class="content">
@@ -317,8 +321,8 @@
       <div class="title" onclick="toggleContent(this)">
         <p>Height</p>
         <div class="icon">
-          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289"
-            alt="Top Arrow Icon" width="16" height="16">
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613"
+            alt="Bottom Arrow Icon" width="16" height="16">
         </div>
       </div>
       <div class="content">
@@ -344,8 +348,9 @@
       <div class="title" onclick="toggleContent(this)">
         <p>Mounting Style</p>
         <div class="icon">
-          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289"
-            alt="Top Arrow Icon" width="16" height="16">
+
+          <img src="https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613"
+            alt="Bottom Arrow Icon" width="16" height="16">
         </div>
       </div>
       <div class="content">
@@ -376,12 +381,13 @@
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
       content.style.padding = "0 32px";
-      img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289";
+      img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613";
 
     } else {
       content.style.maxHeight = "300px";
       content.style.padding = "32px 32px 24px";
-      img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/bottom-arrow.svg?v=1763371613";
+
+      img.src = "https://cdn.shopify.com/s/files/1/0046/9742/3907/files/top-arrow.svg?v=1763371289";
     }
   }
 </script>
